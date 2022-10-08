@@ -15,8 +15,10 @@ reflector --latest 5 --country Germany,France,Switzerland,Austria --sort rate --
 
 # update packages
 pacman -Syyu --noconfirm
-
 clear
+
+
+
 #########################
 ##### User Settings #####
 #########################
@@ -90,6 +92,7 @@ mkdir /mnt/boot/efi
 mount ${DRIVE}1 /mnt/boot/efi
 
 
+
 #############################
 ##### Base Installation #####
 #############################
@@ -99,3 +102,109 @@ pacstrap /mnt base base-devel linux linux-firmware
 
 # generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
+
+
+
+########################
+##### Time setup #####
+########################
+arch-chroot /mnt bash <<SHELL
+# setup timezone
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+# enable hardware clock
+hwclock --systohc
+SHELL
+
+
+
+#########################
+##### Locales Setup #####
+#########################
+arch-chroot /mnt bash <<SHELL
+# setup languages
+echo "LANG=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_ADDRESS=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_IDENTIFICATION=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_MEASUREMENT=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_MONETARY=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_NAME=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_NUMERIC=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_PAPER=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_TELEPHONE=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_TIME=de_DE.UTF-8" >> /etc/locale.conf
+
+# setup vconsole
+echo "KEYMAP=de" >> /etc/vconsole.conf
+echo "FONT=" >> /etc/vconsole.conf
+echo "FONT_MAP=" >> /etc/vconsole.conf
+
+# configure locales
+echo "# Autoinstaller" >> /etc/locale.gen
+echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+
+# generate locales
+locale-gen
+SHELL
+
+
+
+#######################
+##### Hosts Setup #####
+#######################
+arch-chroot /mnt bash <<SHELL
+# set hostname
+echo archlinux > /etc/hostname
+
+# set hosts
+echo "127.0.0.1    localhost" >> /etc/hosts
+echo "::1          localhost" >> /etc/hosts
+echo "127.0.1.1    archlinux.localdomain    archlinux" >> /etc/hosts
+SHELL
+
+
+
+######################
+##### Setup GRUB #####
+######################
+arch-chroot /mnt bash <<SHELL
+# install tools
+pacman -S grub-efi-x86_64 efibootmgr dosfstools os-prober mtools --needed --noconfirm
+
+# install grub (might need to try --efi-directory=/boot/efi)
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+
+# make grub configuration
+grub-mkconfig -o /boot/grub/grub.cfg
+SHELL
+
+
+
+#######################
+##### Install ZSH #####
+#######################
+arch-chroot /mnt bash <<SHELL
+pacman -S zsh --needed --noconfirm
+SHELL
+
+
+
+###############################
+##### Setup User Accounts #####
+###############################
+arch-chroot /mnt bash <<SHELL
+## change root password
+rootpass="password"
+echo -e "${PASS}\n${PASS}" | passwd
+
+## add normal user
+useradd -m -g users -G wheel,storage,power,audio,video -s /usr/bin/zsh ${USER}
+echo -e "${PASS}\n${PASS}" | passwd ${USER}
+
+## install sudo
+pacman -S sudo --needed --noconfirm
+
+## add wheel group to sudoers
+echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/10-installer
+SHELL
