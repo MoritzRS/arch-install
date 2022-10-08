@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPT=$(realpath "$0")
+DIR=$(dirname "$SCRIPT")
 
 ######################
 ##### Pre Setup ######
@@ -209,6 +211,38 @@ arch-chroot /mnt bash <<SHELL
 pacman -S zsh --needed --noconfirm
 SHELL
 
+
+
+###########################
+##### Install Desktop #####
+###########################
+arch-chroot /mnt bash <<SHELL
+# install xorg
+pacman -S xorg xorg-drivers --needed --noconfirm
+
+# install i3
+pacman -S i3-gaps i3lock numlockx --needed --noconfirm
+
+# install needed applications
+pacman -S rofi rxvt-unicode polybar --needed --noconfirm
+
+# install login manager
+pacman -S lightdm lightdm-gtk-greeter --needed --noconfirm
+systemctl enable lightdm
+
+# install fonts
+pacman -S noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome --needed --noconfirm
+
+# sound support
+pacman -S alsa-utils alsa-plugins alsa-lib pavucontrol --needed --noconfirm
+SHELL
+
+
+
+######################
+##### Copy Files #####
+######################
+cp -r ${DIR}/files/. /mnt
 
 
 ###############################
