@@ -181,6 +181,27 @@ SHELL
 
 
 
+############################
+##### Install Services #####
+############################
+arch-chroot /mnt bash <<SHELL
+# install network tools
+pacman -S networkmanager network-manager-applet dhcpcd avahi --needed --noconfirm
+systemctl enable NetworkManager
+systemctl enable dhcpcd
+systemctl enable avahi-daemon
+
+# install bluetooth tools
+pacman -S bluez bluez-utils --needed --noconfirm
+systemctl enable bluetooth
+
+# install internal tools
+pacman -S dbus acpid --needed --noconfirm
+systemctl enable acpid
+SHELL
+
+
+
 #######################
 ##### Install ZSH #####
 #######################
