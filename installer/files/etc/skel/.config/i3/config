@@ -119,7 +119,6 @@ mode "resize" {
 
 
 # Autostart
-exec_always --no-startup-id picom -b
 exec --no-startup-id xfsettingsd --sm-client-disable &
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --set-zoom-fill /usr/share/backgrounds/gnome/blobs-d.svg
