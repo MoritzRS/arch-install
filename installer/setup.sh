@@ -177,6 +177,10 @@ pacman -S grub-efi-x86_64 efibootmgr dosfstools os-prober mtools --needed --noco
 # install grub (might need to try --efi-directory=/boot/efi)
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 
+# update configuration
+sed -i s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=3/ /etc/default/grub
+sed -i s/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/ /etc/default/grub
+
 # make grub configuration
 grub-mkconfig -o /boot/grub/grub.cfg
 SHELL
@@ -227,9 +231,10 @@ pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 pacman -S rofi rxvt-unicode polybar xfce4-settings xfce4-power-manager gnome-backgrounds nitrogen --needed --noconfirm
 
 # install login manager
-pacman -S lightdm lightdm-gtk-greeter --needed --noconfirm
+pacman -S lightdm lightdm-slick-greeter --needed --noconfirm
 systemctl enable lightdm
-echo "background=/usr/share/backgrounds/gnome/blobs-d.svg" >> /etc/lightdm/lightdm-gtk-greeter.conf
+sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /etc/lightdm/lightdm.conf
+
 
 # install fonts
 pacman -S noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome --needed --noconfirm

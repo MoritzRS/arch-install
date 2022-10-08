@@ -37,7 +37,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launchers/style-6.rasi
 
 # Exit menu
-bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+bindsym $mod+Shift-0 exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
 
 ## Focus Windows
 bindsym $mod+Left focus left
