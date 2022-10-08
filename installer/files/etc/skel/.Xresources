@@ -36,7 +36,7 @@ URxvt.color7: #DADAE8
 URxvt.color15: #DADAE8
 
 !! URxvt Appearance
-URxvt.font: xft:JetBrainsMono Nerd Font:size=8
+URxvt.font: xft:MesloLGS NF:size=11
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
@@ -49,3 +49,9 @@ URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
 URxvt.depth: 24
 URxvt.iso14755: false
+
+!! Transparency
+URxvt*inheritPixmap: true
+URxvt*transparent: true
+! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt*shading: 30

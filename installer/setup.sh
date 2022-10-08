@@ -224,11 +224,12 @@ pacman -S xorg xorg-drivers --needed --noconfirm
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 
 # install needed applications
-pacman -S rofi rxvt-unicode polybar --needed --noconfirm
+pacman -S rofi rxvt-unicode polybar picom xfce4-settings xfce4-power-manager gnome-backgrounds nitrogen --needed --noconfirm
 
 # install login manager
 pacman -S lightdm lightdm-gtk-greeter --needed --noconfirm
 systemctl enable lightdm
+echo "background=/usr/share/backgrounds/gnome/blobs-d.svg" >> /etc/lightdm/lightdm-gtk-greeter.conf
 
 # install fonts
 pacman -S noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome --needed --noconfirm
