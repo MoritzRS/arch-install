@@ -119,7 +119,6 @@ mode "resize" {
 
 
 # Autostart
-exec --no-startup-id xfsettingsd --sm-client-disable &
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --set-zoom-fill /usr/share/backgrounds/wallpaper.png
 exec_always --no-startup-id ~/.config/polybar/launch.sh

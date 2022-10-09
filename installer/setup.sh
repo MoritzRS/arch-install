@@ -228,7 +228,7 @@ pacman -S xorg xorg-drivers --needed --noconfirm
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 
 # install needed applications
-pacman -S rofi rxvt-unicode polybar xfce4-settings xfce4-power-manager nitrogen --needed --noconfirm
+pacman -S rofi rxvt-unicode polybar lxappearance xfce4-power-manager nitrogen --needed --noconfirm
 
 # install login manager
 pacman -S lightdm lightdm-slick-greeter --needed --noconfirm
