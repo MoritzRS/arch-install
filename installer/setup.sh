@@ -178,10 +178,12 @@ pacman -S grub-efi-x86_64 efibootmgr dosfstools os-prober mtools --needed --noco
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 
 # update configuration
-sed -i s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=3/ /etc/default/grub
-sed -i s/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/ /etc/default/grub
+#sed -i s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=3/ /etc/default/grub
+#sed -i s/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/ /etc/default/grub
+sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt\"+ /etc/default/grub
 
 # make grub configuration
+# TODO: remake copy after theming
 grub-mkconfig -o /boot/grub/grub.cfg
 SHELL
 
