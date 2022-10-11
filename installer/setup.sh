@@ -180,10 +180,8 @@ grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 # update configuration
 #sed -i s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=3/ /etc/default/grub
 #sed -i s/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/ /etc/default/grub
-sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt\"+ /etc/default/grub
 
 # make grub configuration
-# TODO: remake copy after theming
 grub-mkconfig -o /boot/grub/grub.cfg
 SHELL
 
@@ -230,16 +228,34 @@ pacman -S xorg xorg-drivers --needed --noconfirm
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 
 # install needed applications
-pacman -S rofi rxvt-unicode polybar lxappearance papirus-icon-theme xfce4-power-manager nitrogen --needed --noconfirm
+pacman -S rofi rxvt-unicode polybar lxappearance papirus-icon-theme xfce4-power-manager nitrogen git unzip --needed --noconfirm
+
+# install catppuccin theme
+git clone https://github.com/catppuccin/gtk.git cp-gtk
+unzip cp-gtk/Releases/Catppuccin-Mocha.zip -d /usr/share/themes
+rm -rf cp-gtk
+
+# install catppuccin mocha cursors
+git clone https://github.com/catppuccin/cursors.git cp-cursors
+unzip cp-cursors/cursors/Catppuccin-Mocha-Light-Cursors.zip -d /usr/share/icons
+rm -rf cp-cursors
+
+# install catppuccin grub theme
+git clone https://github.com/catppuccin/grub.git cp-grub
+cp -r cp-grub/src/catppuccin-mocha-grub-theme /usr/share/grub/themes/catppuccin-mocha-grub-theme
+rm -rf cp-grub
+
+# update grub config
+sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt\"+ /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # install login manager
 pacman -S lightdm lightdm-slick-greeter --needed --noconfirm
 systemctl enable lightdm
 sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /etc/lightdm/lightdm.conf
 
-
 # install fonts
-pacman -S noto-fonts ttf-ubuntu-font-family ttf-dejavu ttf-freefont ttf-liberation ttf-droid ttf-inconsolata ttf-roboto terminus-font ttf-font-awesome --needed --noconfirm
+pacman -S noto-fonts --needed --noconfirm
 
 # sound support
 pacman -S alsa-utils alsa-plugins alsa-lib pavucontrol --needed --noconfirm
