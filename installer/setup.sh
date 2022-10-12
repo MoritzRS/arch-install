@@ -228,7 +228,7 @@ pacman -S xorg xorg-drivers --needed --noconfirm
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 
 # install needed applications
-pacman -S rofi rxvt-unicode polybar lxappearance papirus-icon-theme xfce4-power-manager nitrogen git unzip --needed --noconfirm
+pacman -S rofi rxvt-unicode polybar lxappearance papirus-icon-theme xfce4-power-manager nitrogen git unzip wget --needed --noconfirm
 
 # install catppuccin theme
 git clone https://github.com/catppuccin/gtk.git cp-gtk
@@ -256,6 +256,23 @@ sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greet
 
 # install fonts
 pacman -S noto-fonts --needed --noconfirm
+
+# install nerd fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+unzip Hack.zip -d /usr/share/fonts/Hack\ Nerd\ Font
+rm Hack.zip
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d /usr/share/fonts/JetBrainsMono\ Nerd\ Font
+rm JetBrainsMono.zip
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+unzip Meslo.zip -d /usr/share/fonts/Meslo\ Nerd\ Font
+rm Meslo.zip
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.zip
+unzip SourceCodePro.zip -d /usr/share/fonts/SourceCodePro\ Nerd\ Font
+rm SourceCodePro.zip
 
 # sound support
 pacman -S alsa-utils alsa-plugins alsa-lib pavucontrol --needed --noconfirm

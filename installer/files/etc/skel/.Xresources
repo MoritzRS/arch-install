@@ -36,7 +36,7 @@ URxvt.color7: #DADAE8
 URxvt.color15: #DADAE8
 
 !! URxvt Appearance
-URxvt.font: xft:MesloLGS NF:size=11
+URxvt.font: xft:Hack Nerd Font:size=11
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
