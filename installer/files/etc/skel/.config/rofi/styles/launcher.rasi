@@ -20,10 +20,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "~/.config/rofi/colors/catppuccin.rasi"
-* {
-    font: "Hack Nerd Font 10";
-}
+@import                          "../themes/colors.rasi"
+@import                          "../themes/fonts.rasi"
 
 * {
     border-colour:               var(selected);
