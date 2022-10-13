@@ -222,7 +222,7 @@ SHELL
 ###########################
 arch-chroot /mnt bash <<SHELL
 # install xorg
-pacman -S xorg xorg-drivers --needed --noconfirm
+pacman -S xorg xorg-drivers xorg-xbacklight --needed --noconfirm
 
 # install i3
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
@@ -275,7 +275,7 @@ unzip SourceCodePro.zip -d /usr/share/fonts/SourceCodePro\ Nerd\ Font
 rm SourceCodePro.zip
 
 # sound support
-pacman -S alsa-utils alsa-plugins alsa-lib pavucontrol --needed --noconfirm
+pacman -S alsa-utils alsa-plugins alsa-lib --needed --noconfirm
 SHELL
 
 
