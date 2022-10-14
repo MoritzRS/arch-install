@@ -1,39 +1,84 @@
-! special
-URxvt.foreground: #DADAE8
-URxvt.background: #1E1E29
-URxvt.cursorColor: #B1E3AD
+#################################
+##########   General   ##########
+#################################
+
+*background: #1E1E2E
+*foreground: #CDD6F4
 
 ! black
-URxvt.color0: #6E6C7E
-URxvt.color8: #6E6C7E
+*color0: #45475A
+*color8: #585B70
 
 ! red
-URxvt.color1: #E38C8F
-URxvt.color9: #E38C8F
+*color1: #F38BA8
+*color9: #F38BA8
 
 ! green
-URxvt.color2: #B1E3AD
-URxvt.color10: #B1E3AD
+*color2: #A6E3A1
+*color10: #A6E3A1
 
 ! yellow
-URxvt.color3: #EBDDAA
-URxvt.color11: #EBDDAA
+*color3: #F9E2AF
+*color11: #F9E2AF
 
 ! blue
-URxvt.color4: #A4B9EF
-URxvt.color12: #A4B9EF
+*color4: #89B4FA
+*color12: #89B4FA
 
 ! magenta
-URxvt.color5: #C6AAE8
-URxvt.color13: #C6AAE8
+*color5: #F5C2E7
+*color13: #F5C2E7
 
 ! cyan
-URxvt.color6: #E5B4E2
-URxvt.color14: #E5B4E2
+*color6: #94E2D5
+*color14: #94E2D5
 
 ! white
-URxvt.color7: #DADAE8
-URxvt.color15: #DADAE8
+*color7: #BAC2DE
+*color15: #A6ADC8
+
+
+
+###############################
+##########   URxvt   ##########
+###############################
+
+! special
+URxvt.background: #1E1E2E
+URxvt.foreground: #CDD6F4
+URxvt.cursorColor: #F5E0DC
+
+! black
+URxvt.color0: #45475A
+URxvt.color8: #585B70
+
+! red
+URxvt.color1: #F38BA8
+URxvt.color9: #F38BA8
+
+! green
+URxvt.color2: #A6E3A1
+URxvt.color10: #A6E3A1
+
+! yellow
+URxvt.color3: #F9E2AF
+URxvt.color11: #F9E2AF
+
+! blue
+URxvt.color4: #89B4FA
+URxvt.color12: #89B4FA
+
+! magenta
+URxvt.color5: #F5C2E7
+URxvt.color13: #F5C2E7
+
+! cyan
+URxvt.color6: #94E2D5
+URxvt.color14: #94E2D5
+
+! white
+URxvt.color7: #BAC2DE
+URxvt.color15: #A6ADC8
 
 !! URxvt Appearance
 URxvt.font: xft:Hack Nerd Font:size=11
@@ -55,3 +100,8 @@ URxvt*inheritPixmap: true
 URxvt*transparent: true
 ! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
 URxvt*shading: 30
+
+!! Copy Paste
+URxvt.iso14755: false
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
