@@ -228,7 +228,7 @@ pacman -S xorg xorg-drivers xorg-xbacklight --needed --noconfirm
 pacman -S i3-gaps i3lock numlockx --needed --noconfirm
 
 # install needed applications
-pacman -S rofi rxvt-unicode polybar dunst lxappearance papirus-icon-theme xfce4-power-manager nitrogen git unzip wget --needed --noconfirm
+pacman -S rofi rxvt-unicode polybar dunst ristretto maim xdotool xdg-utils lxappearance papirus-icon-theme xfce4-power-manager nitrogen git unzip wget --needed --noconfirm
 
 # install catppuccin theme
 git clone https://github.com/catppuccin/gtk.git cp-gtk

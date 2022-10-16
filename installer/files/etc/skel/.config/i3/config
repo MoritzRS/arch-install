@@ -39,6 +39,9 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/styles
 # Exit menu
 bindsym $mod+Shift+0 exec --no-startup-id bash ~/.config/rofi/scripts/powermenu.sh
 
+# Screenshot
+bindsym $mod+Print exec --no-startup-id bash ~/.config/rofi/scripts/screenshot.sh
+
 ## Focus Windows
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
