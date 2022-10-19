@@ -275,7 +275,7 @@ unzip SourceCodePro.zip -d /usr/share/fonts/SourceCodePro\ Nerd\ Font
 rm SourceCodePro.zip
 
 # sound support
-pacman -S alsa-utils alsa-plugins alsa-lib --needed --noconfirm
+pacman -S alsa-utils alsa-plugins pulseaudio pavucontrol --needed --noconfirm
 SHELL
 
 
