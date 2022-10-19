@@ -1,8 +1,20 @@
 # Layout
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 hide_edge_borders none
-font xft:URWGothic-Book 11
+font xft:Hack Nerd Font 11
+
+# Colors
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #89b4fa #89b4fa #89b4fa #f38ba8   #89b4fa
+client.focused_inactive #313244 #313244 #313244 #f38ba8   #313244
+client.unfocused        #313244 #313244 #313244 #f38ba8   #1E1E2E
+client.urgent           #f38ba8 #f38ba8 #f38ba8 #f38ba8   #f38ba8
+client.placeholder      #161320 #161320 #161320 #f38ba8   #161320
+client.background       #FFFFFF
+
+
 
 ## Workspaces
 set $ws1 1
@@ -15,7 +27,7 @@ set $ws7 7
 set $ws8 8
 
 
-
+focus_follows_mouse no
 
 # Keys
 ## Set mod key (Mod1=<Alt>, Mod4=<Super>)
