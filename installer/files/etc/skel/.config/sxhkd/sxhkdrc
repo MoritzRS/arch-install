@@ -1,0 +1,43 @@
+# Terminal
+super + Return
+    urxvt
+
+# Application Launcher
+super + d
+    rofi -show drun -theme ~/.config/rofi/styles/launcher.rasi
+
+# Power Menu
+super + shift + 0
+    bash ~/.config/rofi/scripts/powermenu.sh
+
+# close window
+super + shift + q
+    bspc node -c
+
+# Restart bspwm
+super + alt + Escape
+    bspc wm -r
+
+# Switch to Workspace
+super + {1,2,3,4,5,6,7,8,9,0}
+  bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
+
+# Send to Workspace
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}' --follow
+
+# Focus Node
+super + {Left,Right,Up,Down}
+    bspc node -f {west,east,north,south}
+
+# Expand Node
+super + alt + {Left,Right,Up,Down}
+    bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+
+# Shrink Node
+super + alt + shift + {Left,Right,Up,Down}
+    bspc node -z {right -20 0,left 20 0,bottom 0 -20, top 0 20}
+
+# Window state
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}

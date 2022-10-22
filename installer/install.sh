@@ -69,6 +69,7 @@ confirm_selection() {
     if [ "${CORRECTOPTIONS}" != "y" ] && [ "${CORRECTOPTIONS}" != "Y" ]; then
         exit 1
     fi
+    clear;
 }
 
 ##
@@ -261,6 +262,25 @@ install_i3() {
     arch-chroot /mnt systemctl enable lightdm;
 }
 
+##
+# Install bspwm Desktop
+##
+install_bspwm() {
+    local PACKAGES="xorg xorg-drivers xorg-xbacklight";
+    PACKAGES+=" lightdm lightdm-slick-greeter"
+    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol"
+    PACKAGES+=" bspwm sxhkd i3lock numlockx";
+    PACKAGES+=" noto-fonts";
+    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen maim";
+    PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance xfce4-power-manager";
+    arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
+
+
+    sed -i s/\#user-session=default/user-session=bspwm/ /mnt/etc/lightdm/lightdm.conf
+    sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /mnt/etc/lightdm/lightdm.conf
+    arch-chroot /mnt systemctl enable lightdm;
+}
+
 
 ##
 # Setup User Account with default shell
@@ -280,6 +300,7 @@ SHELL
 ##
 install_configs() {
     cp -r ${DIR}/files/. /mnt
+    chmod +x /mnt/etc/skel/.config/bspwm/bspwmrc
 }
 
 
@@ -309,6 +330,10 @@ install_bootloader;
 
 if [ "${DESKTOP}" = "i3" ]; then
     install_i3;
+fi
+
+if [ "${DESKTOP}" = "bspwm" ]; then
+    install_bspwm;
 fi
 
 install_nerd_fonts;

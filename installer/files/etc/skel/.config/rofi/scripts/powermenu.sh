@@ -57,7 +57,11 @@ run_cmd() {
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
+			if [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
+				bspc quit
+			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
 				i3-msg exit
+			fi
 		fi
 	else
 		exit 0
