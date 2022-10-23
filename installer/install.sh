@@ -174,17 +174,17 @@ setup_host() {
 }
 
 ##
-# Install GRUB with Catppuccin Mocha
+# Install GRUB with Catppuccin Macchiato
 ##
 install_bootloader() {
     arch-chroot /mnt pacman -S grub-efi-x86_64 efibootmgr dosfstools os-prober mtools --needed --noconfirm;
     arch-chroot /mnt grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck;
     
     git clone https://github.com/catppuccin/grub.git /mnt/cp-grub;
-    cp -r /mnt/cp-grub/src/catppuccin-mocha-grub-theme /mnt/usr/share/grub/themes/catppuccin-mocha-grub-theme;
+    cp -r /mnt/cp-grub/src/catppuccin-macchiato-grub-theme /mnt/usr/share/grub/themes/catppuccin-macchiato-grub-theme;
     rm -rf /mnt/cp-grub;
 
-    sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt\"+ /mnt/etc/default/grub;
+    sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt\"+ /mnt/etc/default/grub;
     
     arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg;
 }
@@ -233,11 +233,11 @@ install_nerd_fonts() {
 ##
 install_themes() {
     git clone https://github.com/catppuccin/gtk.git /mnt/cp-gtk
-    unzip /mnt/cp-gtk/Releases/Catppuccin-Mocha.zip -d /mnt/usr/share/themes
+    unzip /mnt/cp-gtk/Releases/Catppuccin-Macchiato.zip -d /mnt/usr/share/themes
     rm -rf /mnt/cp-gtk
 
     git clone https://github.com/catppuccin/cursors.git /mnt/cp-cursors
-    unzip /mnt/cp-cursors/cursors/Catppuccin-Mocha-Light-Cursors.zip -d /mnt/usr/share/icons
+    unzip /mnt/cp-cursors/cursors/Catppuccin-Macchiato-Light-Cursors.zip -d /mnt/usr/share/icons
     rm -rf /mnt/cp-cursors
 
     arch-chroot /mnt pacman -S papirus-icon-theme --needed --noconfirm;
