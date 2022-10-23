@@ -252,7 +252,7 @@ install_i3() {
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol"
     PACKAGES+=" i3-gaps i3lock numlockx";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen maim";
+    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen gnome-backgrounds maim";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -271,7 +271,7 @@ install_bspwm() {
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol"
     PACKAGES+=" bspwm sxhkd i3lock numlockx";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen maim";
+    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen gnome-backgrounds maim";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 

@@ -41,3 +41,26 @@ super + alt + shift + {Left,Right,Up,Down}
 # Window state
 super + {t,shift + t,s,f}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Backlight Control
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+
+# Audio Control
+XF86AudioRaiseVolume
+    pactl set-sink-volume 0 +5%
+XF86AudioLowerVolume
+    pactl set-sink-volume 0 -5%
+XF86AudioMute
+    pactl set-sink-mute 0 toggle
+
+# Screenshots
+super + Print
+    maim ~/Bilder/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && notify-send "Screenshot" "Screenshot Saved"
+
+super + shift + Print
+    maim -s ~/Bilder/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && notify-send "Screenshot" "Screenshot Saved"

@@ -2,7 +2,7 @@
 
 # Autostart
 pgrep -x sxhkd > /dev/null || sxhkd &
-nitrogen --set-zoom-fill /usr/share/backgrounds/wallpaper.png &
+nitrogen --restore &
 ~/.config/polybar/launch.sh &
 dunst &
 xfce4-power-manager &
