@@ -193,7 +193,7 @@ install_bootloader() {
 # Install network, bluetooth and power
 ##
 install_services() {
-    arch-chroot /mnt pacman -S networkmanager dhcpcd bluez bluez-utils acpid --needed --noconfirm;
+    arch-chroot /mnt pacman -S networkmanager nm-connection-editor blueman dhcpcd bluez bluez-utils acpid --needed --noconfirm;
     arch-chroot /mnt systemctl enable NetworkManager;
     arch-chroot /mnt systemctl enable dhcpcd;
     arch-chroot /mnt systemctl enable bluetooth;
