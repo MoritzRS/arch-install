@@ -282,7 +282,7 @@ install_bspwm() {
 }
 
 ##
-# Installs NVM Globally
+# Installs NVM Globally with node v18
 ##
 install_nvm() {
     local NVM_DIR="/mnt/usr/local/nvm";
@@ -292,6 +292,10 @@ install_nvm() {
     \. ${NVM_DIR}/nvm.sh;
     chmod 777 ${NVM_DIR};
 
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+    nvm install 18; 
 }
 
 
