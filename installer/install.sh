@@ -201,10 +201,18 @@ install_services() {
 }
 
 ##
-# Install and setup zsh
+# Install and setup zsh with ohmyzsh and powerlevel10k
 ##
 install_zsh() {
     arch-chroot /mnt pacman -S zsh --needed --noconfirm;
+
+    # Install ohmyzsh
+    git clone https://github.com/ohmyzsh/ohmyzsh.git /mnt/usr/local/oh-my-zsh;
+    rm -rf /mnt/usr/local/oh-my-zsh/.git/;
+
+    # install autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions /mnt/usr/local/oh-my-zsh/custom/plugins/zsh-autosuggestions;
+    rm -rf /mnt/usr/local/oh-my-zsh/custom/plugins/zsh-autosuggestions/.git/;
 }
 
 ##

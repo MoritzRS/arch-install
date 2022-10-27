@@ -1,8 +1,13 @@
-# Basic zsh setup
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-unsetopt beep
+export ZSH=/usr/local/oh-my-zsh
+
+ZSH_THEME="robbyrussell"
+
+plugins=(
+    git
+    zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # NVM Install
 export NVM_DIR="/usr/local/nvm"
