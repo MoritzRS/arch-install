@@ -217,21 +217,7 @@ install_zsh() {
 # Install selection of nerd fonts
 ##
 install_nerd_fonts() {
-    wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip -P /mnt/;
-    unzip /mnt/Hack.zip -d /mnt/usr/share/fonts/Hack\ Nerd\ Font;
-    rm /mnt/Hack.zip;
-
-    wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip -P /mnt/;
-    unzip /mnt/JetBrainsMono.zip -d /mnt/usr/share/fonts/JetBrainsMono\ Nerd\ Font;
-    rm /mnt/JetBrainsMono.zip;
-
-    wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip -P /mnt/;
-    unzip /mnt/Meslo.zip -d /mnt/usr/share/fonts/Meslo\ Nerd\ Font;
-    rm /mnt/Meslo.zip;
-
-    wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.zip -P /mnt/;
-    unzip /mnt/SourceCodePro.zip -d /mnt/usr/share/fonts/SourceCodePro\ Nerd\ Font;
-    rm /mnt/SourceCodePro.zip;
+    arch-chroot /mnt pacman -S ttf-hack-nerd ttf-sourcecodepro-nerd ttf-terminus-nerd --needed --noconfirm;
 }
 
 ##
