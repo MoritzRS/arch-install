@@ -13,7 +13,7 @@ add_newline = false
 [username]
 style_user = "bg:white fg:black"
 style_root = "bg:white fg:black"
-format = "[  ]($style) "
+format = "[  ]($style)"
 disabled = false
 show_always = true
 
