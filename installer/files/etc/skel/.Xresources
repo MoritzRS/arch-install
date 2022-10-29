@@ -99,7 +99,7 @@ URxvt.iso14755: false
 URxvt*inheritPixmap: true
 URxvt*transparent: true
 ! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*shading: 30
+URxvt*shading: 20
 
 !! Copy Paste
 URxvt.iso14755: false

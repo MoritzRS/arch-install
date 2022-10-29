@@ -1,0 +1,41 @@
+format = """
+$username\
+[](fg:white bg:blue)\
+$directory\
+[](fg:blue bg:cyan)\
+$git_branch\
+$git_status\
+[ ](fg:cyan)\
+"""
+
+add_newline = false
+
+[username]
+style_user = "bg:white fg:black"
+style_root = "bg:white fg:black"
+format = "[  ]($style) "
+disabled = false
+show_always = true
+
+
+[directory]
+style = "bg:blue fg:black"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Dokumente" = " "
+"Downloads" = " "
+"Musik" = "ﱘ "
+"Bilder" = " "
+"Dev" = "ﲵ "
+
+[git_branch]
+symbol = ""
+style = "bg:cyan fg:black"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:cyan fg:black"
+format = '[$all_status$ahead_behind ]($style)'

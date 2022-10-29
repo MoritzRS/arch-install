@@ -204,16 +204,13 @@ install_services() {
 # Install and setup zsh with ohmyzsh and powerlevel10k
 ##
 install_zsh() {
-    arch-chroot /mnt pacman -S zsh --needed --noconfirm;
-
-    # Install ohmyzsh
-    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git /mnt/usr/local/oh-my-zsh;
+    arch-chroot /mnt pacman -S zsh starship --needed --noconfirm;
 
     # install autosuggestions
-    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions /mnt/usr/local/oh-my-zsh/custom/plugins/zsh-autosuggestions;
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions /mnt/usr/local/zsh-plugins/zsh-autosuggestions;
 
     # install syntax highlighting
-    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git /mnt/usr/local/oh-my-zsh/custom/plugins/zsh-syntax-highlighting;
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git /mnt/usr/local/zsh-plugins/zsh-syntax-highlighting;
 }
 
 ##
