@@ -145,6 +145,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 
 # Autostart
+exec --no-startup-id dex -a -s ./config/autostart -w
 exec --no-startup-id dunst
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
