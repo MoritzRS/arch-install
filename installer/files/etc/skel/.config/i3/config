@@ -130,8 +130,8 @@ mode "resize" {
 }
 
 # Backlight Control
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10" && notify-send "Brightness" "Up"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10" && notify-send "Brightness" "Down"
 
 
 # Audio Control
