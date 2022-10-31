@@ -239,7 +239,7 @@ install_themes() {
 # Install i3 Desktop
 ##
 install_i3() {
-    local PACKAGES="xorg xorg-drivers xorg-xbacklight";
+    local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
@@ -258,7 +258,7 @@ install_i3() {
 # Install bspwm Desktop
 ##
 install_bspwm() {
-    local PACKAGES="xorg xorg-drivers xorg-xbacklight";
+    local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
