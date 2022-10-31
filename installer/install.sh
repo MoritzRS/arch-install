@@ -241,7 +241,7 @@ install_themes() {
 install_i3() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol"
+    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim";
@@ -260,7 +260,7 @@ install_i3() {
 install_bspwm() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol"
+    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim";
@@ -303,6 +303,15 @@ install_common() {
 
     # add flatpak repository
     arch-chroot /mnt flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
+}
+
+##
+# install Virtualization via kvm
+##
+install_virt() {
+    arch-chroot /mnt pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat --needed --noconfirm;
+    arch-chroot /mnt systemctl enable libvirtd.service;
+
 }
 
 
