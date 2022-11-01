@@ -305,15 +305,6 @@ install_common() {
     arch-chroot /mnt flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 }
 
-##
-# install Virtualization via kvm
-##
-install_virt() {
-    arch-chroot /mnt pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat --needed --noconfirm;
-    arch-chroot /mnt systemctl enable libvirtd.service;
-
-}
-
 
 ##
 # Setup User Account with default shell
