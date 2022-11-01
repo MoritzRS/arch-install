@@ -295,7 +295,7 @@ install_nvm() {
 ##
 install_common() {
     # Applications
-    arch-chroot /mnt pacman -S git php php-sqlite code neovim obsidian firefox epiphany chromium pcmanfm totem --needed --noconfirm;
+    arch-chroot /mnt pacman -S git php php-sqlite code neovim obsidian firefox epiphany chromium pcmanfm-gtk3 totem --needed --noconfirm;
 
     # setup php sqlite
     sed -i s/\;extension=pdo_sqlite/extension=pdo_sqlite/ /mnt/etc/php/php.ini 
