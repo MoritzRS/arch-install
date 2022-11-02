@@ -244,7 +244,7 @@ install_i3() {
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim";
+    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -263,7 +263,7 @@ install_bspwm() {
     PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim";
+    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -295,7 +295,7 @@ install_nvm() {
 ##
 install_common() {
     # Applications
-    arch-chroot /mnt pacman -S git php php-sqlite code neovim obsidian firefox epiphany chromium pcmanfm-gtk3 totem --needed --noconfirm;
+    arch-chroot /mnt pacman -S git php php-sqlite code neovim obsidian firefox epiphany chromium totem --needed --noconfirm;
 
     # setup php sqlite
     sed -i s/\;extension=pdo_sqlite/extension=pdo_sqlite/ /mnt/etc/php/php.ini 

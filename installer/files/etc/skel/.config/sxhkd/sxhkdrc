@@ -6,6 +6,10 @@ super + Return
 super + d
     rofi -show drun -theme ~/.config/rofi/styles/launcher.rasi
 
+# Explorer
+super + e
+    pcmanfm
+
 # Power Menu
 super + shift + 0
     bash ~/.config/rofi/scripts/powermenu.sh
