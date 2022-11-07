@@ -241,7 +241,7 @@ install_themes() {
 install_i3() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
+    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pulseaudio-bluetooth pavucontrol pamixer"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
@@ -260,7 +260,7 @@ install_i3() {
 install_bspwm() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pavucontrol pamixer"
+    PACKAGES+=" alsa-utils alsa-plugins pulseaudio pulseaudio-bluetooth pavucontrol pamixer"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
