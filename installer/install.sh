@@ -193,7 +193,9 @@ install_bootloader() {
 # Install network, bluetooth and power
 ##
 install_services() {
-    arch-chroot /mnt pacman -S networkmanager nm-connection-editor blueman dhcpcd bluez bluez-utils acpid --needed --noconfirm;
+    local PACKAGES="networkmanager nm-connection-editor blueman dhcpcd bluez bluez-utils acpid";
+    PACKAGES+=" pulseaudio pulseaudio-bluetooth pavucontrol pamixer";
+    arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
     arch-chroot /mnt systemctl enable NetworkManager;
     arch-chroot /mnt systemctl enable dhcpcd;
     arch-chroot /mnt systemctl enable bluetooth;
@@ -241,7 +243,6 @@ install_themes() {
 install_i3() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" pulseaudio pulseaudio-bluetooth pavucontrol pamixer"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
@@ -260,7 +261,6 @@ install_i3() {
 install_bspwm() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" pulseaudio pulseaudio-bluetooth pavucontrol pamixer"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
