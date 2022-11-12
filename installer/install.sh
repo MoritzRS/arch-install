@@ -45,15 +45,6 @@ select_user() {
 }
 
 ##
-# Select Desktop Environment
-##
-select_desktop() {
-    clear;
-    read -p "Desktop (i3,bspwm): " DESKTOP;
-    clear;
-}
-
-##
 # Confirm user settings
 ##
 confirm_selection() {
@@ -61,7 +52,6 @@ confirm_selection() {
     echo "Drive: ${DRIVE}";
     echo "Username: ${USER}";
     echo "Password: ${PASS}";
-    echo "Desktop: ${DESKTOP}";
     echo "";
 
     local CORRECTOPTIONS;
@@ -238,27 +228,9 @@ install_themes() {
 }
 
 ##
-# Install i3 Desktop
-##
-install_i3() {
-    local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
-    PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" i3-gaps i3lock numlockx dex";
-    PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip";
-    PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
-    arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
-
-
-
-    sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /mnt/etc/lightdm/lightdm.conf
-    arch-chroot /mnt systemctl enable lightdm;
-}
-
-##
 # Install bspwm Desktop
 ##
-install_bspwm() {
+install_desktop() {
     local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
@@ -337,7 +309,6 @@ install_configs() {
 prepare_setup;
 select_drive;
 select_user;
-select_desktop;
 confirm_selection;
 
 parition_disk;
@@ -352,13 +323,7 @@ install_services;
 install_zsh;
 install_bootloader;
 
-if [ "${DESKTOP}" = "i3" ]; then
-    install_i3;
-fi
-
-if [ "${DESKTOP}" = "bspwm" ]; then
-    install_bspwm;
-fi
+install_desktop;
 
 install_nerd_fonts;
 install_themes;
