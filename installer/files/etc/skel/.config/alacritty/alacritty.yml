@@ -1,0 +1,14 @@
+# Import Colorscheme
+import:
+  - ~/.config/alacritty/colorscheme.yml
+
+# Window Settings
+window:
+  opacity: 0.95
+
+# Font Settings
+font:
+  size: 11.0
+  normal:
+    family: Hack Nerd Font
+    style: Regular

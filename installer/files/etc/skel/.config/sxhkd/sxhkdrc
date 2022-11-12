@@ -1,6 +1,6 @@
 # Terminal
 super + Return
-    urxvt
+    alacritty
 
 # Application Launcher
 super + d

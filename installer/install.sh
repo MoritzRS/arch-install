@@ -245,7 +245,7 @@ install_i3() {
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" i3-gaps i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
+    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -263,7 +263,7 @@ install_bspwm() {
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" bspwm sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi rxvt-unicode polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
+    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
