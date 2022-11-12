@@ -3,6 +3,7 @@
 # Autostart
 dex -a -s ~/.config/autostart -w
 pgrep -x sxhkd > /dev/null || sxhkd &
+picom &
 nitrogen --restore &
 ~/.config/polybar/launch.sh &
 dunst &
