@@ -37,10 +37,10 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               0px;
+    border-radius:               20px;
     border-color:                @selected;
     cursor:                      "default";
-    background-color:            transparent;
+    background-color:            @background;
 }
 
 /*****----- Main Box -----*****/
@@ -48,12 +48,12 @@ mainbox {
     enabled:                     true;
     spacing:                     15px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     30px;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "message", "listview" ];
+    children:                    [ "inputbar", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -79,14 +79,14 @@ textbox-prompt-colon {
     expand:                      false;
     str:                         "";
     padding:                     12px 16px;
-    border-radius:               0px;
+    border-radius:               100%;
     background-color:            @urgent;
     text-color:                  @background;
 }
 prompt {
     enabled:                     true;
     padding:                     12px;
-    border-radius:               0px;
+    border-radius:               100%;
     background-color:            @active;
     text-color:                  @background;
 }
@@ -94,10 +94,10 @@ prompt {
 /*****----- Message -----*****/
 message {
     enabled:                     true;
-    margin:                      0px 100px;
-    padding:                     15px;
+    margin:                      0px;
+    padding:                     12px;
     border:                      0px solid;
-    border-radius:               15px;
+    border-radius:               100%;
     border-color:                @selected;
     background-color:            @background-alt;
     text-color:                  @foreground;
@@ -149,9 +149,9 @@ element {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     45px 10px;
+    padding:                     40px 10px;
     border:                      0px solid;
-    border-radius:               20px;
+    border-radius:               100%;
     border-color:                @selected;
     background-color:            @background-alt;
     text-color:                  @foreground;

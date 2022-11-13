@@ -16,8 +16,8 @@ no='ﰸ'
 # Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
-		-p "Uptime: $uptime" \
-		-mesg "Uptime: $uptime" \
+		-p "Laufzeit: $uptime" \
+		-mesg "Laufzeit: $uptime" \
 		-theme ~/.config/rofi/styles/powermenu.rasi
 }
 
