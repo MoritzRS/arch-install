@@ -267,7 +267,7 @@ install_nvm() {
 ##
 install_common() {
     # Applications
-    arch-chroot /mnt pacman -S git php php-sqlite code neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem --needed --noconfirm;
+    arch-chroot /mnt pacman -S git lazygit php php-sqlite code neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem --needed --noconfirm;
 
     # setup php sqlite
     sed -i s/\;extension=pdo_sqlite/extension=pdo_sqlite/ /mnt/etc/php/php.ini 
@@ -297,6 +297,9 @@ SHELL
 install_configs() {
     cp -r ${DIR}/files/. /mnt
     chmod +x /mnt/etc/skel/.config/bspwm/bspwmrc
+
+    # download neovim config
+    git clone --depth=1 https://github.com/MoritzRS/neovim-config.git /mnt/etc/skel/.config/nvim
 }
 
 
