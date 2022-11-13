@@ -5,7 +5,7 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
 
 # Options
-shutdown='襤'
+shutdown=''
 reboot='ﰇ'
 lock=''
 suspend='⏾'
