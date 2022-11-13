@@ -30,6 +30,7 @@ select_drive() {
     clear;
     lsblk;
     read -p "Drive (eg. /dev/sda): " DRIVE;
+    read -p "SSD? (y/n): " SSD;
     clear;
 }
 
@@ -50,6 +51,7 @@ select_user() {
 confirm_selection() {
     clear;
     echo "Drive: ${DRIVE}";
+    echo "SSD: ${SSD}";
     echo "Username: ${USER}";
     echo "Password: ${PASS}";
     echo "";
@@ -94,20 +96,34 @@ EOL
 # Create needed filesystems
 ##
 create_filesystems() {
-    mkfs.fat -F32 ${DRIVE}1
-    mkswap ${DRIVE}2
-    mkfs.ext4 ${DRIVE}3
+    if [ "${SSD}" != "y" ] && [ "${SSD}" != "Y"]; then
+        mkfs.fat -F32 ${DRIVE}1
+        mkswap ${DRIVE}2
+        mkfs.ext4 ${DRIVE}3
+    else
+        mkfs.fat -F32 ${DRIVE}p1
+        mkswap ${DRIVE}p2}
+        mkfs.ext4 ${DRIVE}p3
+    fi
 }
 
 ##
 # Mount created filesystems
 ##
 mount_partitions() {
-    swapon ${DRIVE}2
-    mount ${DRIVE}3 /mnt
-    mkdir /mnt/{boot,home}
-    mkdir /mnt/boot/efi
-    mount ${DRIVE}1 /mnt/boot/efi
+    if [ "${SSD}" != "y" ] && [ "${SSD}" != "Y"]; then
+        swapon ${DRIVE}2
+        mount ${DRIVE}3 /mnt
+        mkdir /mnt/{boot,home}
+        mkdir /mnt/boot/efi
+        mount ${DRIVE}1 /mnt/boot/efi
+    else
+        swapon ${DRIVE}p2
+        mount ${DRIVE}p3 /mnt
+        mkdir /mnt/{boot,home}
+        mkdir /mnt/boot/efi
+        mount ${DRIVE}p1 /mnt/boot/efi
+    fi  
 }
 
 ##
