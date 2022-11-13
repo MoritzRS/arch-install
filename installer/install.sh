@@ -236,7 +236,7 @@ install_desktop() {
     PACKAGES+=" bspwm picom sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
     PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip";
-    PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 xfce4-power-manager";
+    PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 lxinput-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
 
