@@ -3,12 +3,12 @@
 # Autostart
 dex -a -s ~/.config/autostart -w
 pgrep -x sxhkd > /dev/null || sxhkd &
-picom &
 nitrogen --restore &
 ~/.config/polybar/launch.sh &
 dunst &
 xfce4-power-manager &
 pcmanfm -d &
+picom &
 
 # Workspaces
 bspc monitor -d I II III IV V VI VII VIII IX X
