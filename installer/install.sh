@@ -102,7 +102,7 @@ create_filesystems() {
         mkfs.ext4 ${DRIVE}3
     else
         mkfs.fat -F32 ${DRIVE}p1
-        mkswap ${DRIVE}p2}
+        mkswap ${DRIVE}p2
         mkfs.ext4 ${DRIVE}p3
     fi
 }
