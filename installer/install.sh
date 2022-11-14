@@ -206,6 +206,7 @@ install_services() {
     arch-chroot /mnt systemctl enable dhcpcd;
     arch-chroot /mnt systemctl enable bluetooth;
     arch-chroot /mnt systemctl enable acpid;
+    arch-chroot /mnt systemctl enable fstrim.timer;
 }
 
 ##
