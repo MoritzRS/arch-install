@@ -48,10 +48,10 @@ super + {t,shift + t,s,f}
 
 # Backlight Control
 XF86MonBrightnessUp
-    xbacklight -inc 10 && notify-send "Brightness" "Up"
+    light -A 5
 
 XF86MonBrightnessDown
-    xbacklight -dec 10 && notify-send "Brightness" "Down"
+    light -U 5
 
 
 # Audio Control

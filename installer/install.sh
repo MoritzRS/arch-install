@@ -247,7 +247,7 @@ install_themes() {
 # Install bspwm Desktop
 ##
 install_desktop() {
-    local PACKAGES="xorg xorg-drivers xorg-xbacklight xf86-input-synaptics";
+    local PACKAGES="xorg xorg-drivers light xf86-input-synaptics";
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" bspwm picom sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
