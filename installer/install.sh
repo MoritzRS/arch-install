@@ -200,7 +200,7 @@ install_bootloader() {
 ##
 install_services() {
     local PACKAGES="networkmanager nm-connection-editor blueman dhcpcd bluez bluez-utils acpid";
-    PACKAGES+=" pipewire pipewire-pulse pavucontrol pamixer";
+    PACKAGES+=" pipewire pipewire-alsa pipewire-jack pipewire-pulse pavucontrol pamixer";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
     arch-chroot /mnt systemctl enable NetworkManager;
     arch-chroot /mnt systemctl enable dhcpcd;
