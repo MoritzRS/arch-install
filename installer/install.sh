@@ -314,6 +314,10 @@ install_configs() {
     cp -r ${DIR}/files/. /mnt
     chmod +x /mnt/etc/skel/.config/bspwm/bspwmrc
 
+    # create folder structure
+    mkdir /mnt/etc/skel/{Bilder,Dev,Dokumente,Downloads,Musik,Videos}
+    mkdir /mnt/etc/skel/Bilder/Screenshots
+
     # download neovim config
     git clone --depth=1 https://github.com/MoritzRS/neovim-config.git /mnt/etc/skel/.config/nvim
 }
