@@ -313,7 +313,12 @@ SHELL
 ##
 install_configs() {
     cp -r ${DIR}/files/. /mnt
+
+    # make bspwmrc executable
     chmod +x /mnt/etc/skel/.config/bspwm/bspwmrc
+
+    # autodetect backlight for polybar
+    sed -i s/amdgpu_bl0/$(ls /sys/class/backlight/)/ /mnt/etc/skel/.config/polybar/modules/backlight.ini
 
     # create folder structure
     mkdir /mnt/etc/skel/{Bilder,Dev,Dokumente,Downloads,Musik,Videos}
