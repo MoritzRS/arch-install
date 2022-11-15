@@ -252,7 +252,7 @@ install_desktop() {
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" bspwm picom sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip";
+    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip udiskie";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 lxinput-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -301,7 +301,7 @@ install_common() {
 setup_users() {
     arch-chroot /mnt bash <<SHELL
 pacman -S sudo --needed --noconfirm;
-useradd -m -g users -G wheel,storage,power,audio,video -s /usr/bin/zsh ${USER};
+useradd -m -g users -G wheel,storage,disk,power,audio,video -s /usr/bin/zsh ${USER};
 echo -e "${PASS}\n${PASS}" | passwd;
 echo -e "${PASS}\n${PASS}" | passwd ${USER};
 echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/10-installer;

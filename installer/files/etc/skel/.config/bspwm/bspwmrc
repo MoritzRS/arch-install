@@ -7,7 +7,7 @@ nitrogen --restore &
 ~/.config/polybar/launch.sh &
 dunst &
 xfce4-power-manager &
-pcmanfm -d &
+udiskie --no-notify &
 picom &
 
 # Workspaces
