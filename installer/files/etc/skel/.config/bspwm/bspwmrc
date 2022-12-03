@@ -11,7 +11,7 @@ udiskie --no-notify &
 picom &
 
 # Workspaces
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V VI VII VIII IX
 
 # Layout
 bspc config border_width 2
