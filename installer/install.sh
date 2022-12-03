@@ -237,10 +237,6 @@ install_themes() {
     unzip /mnt/cp-gtk/Releases/Catppuccin-Macchiato.zip -d /mnt/usr/share/themes
     rm -rf /mnt/cp-gtk
 
-    git clone --depth=1 https://github.com/catppuccin/cursors.git /mnt/cp-cursors
-    unzip /mnt/cp-cursors/cursors/Catppuccin-Macchiato-Light-Cursors.zip -d /mnt/usr/share/icons
-    rm -rf /mnt/cp-cursors
-
     arch-chroot /mnt pacman -S papirus-icon-theme --needed --noconfirm;
 }
 
