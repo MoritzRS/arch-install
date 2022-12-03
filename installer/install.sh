@@ -284,7 +284,7 @@ install_nvm() {
 ##
 install_common() {
     # Applications
-    arch-chroot /mnt pacman -S git lazygit php php-sqlite code gnome-keyring neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem docker --needed --noconfirm;
+    arch-chroot /mnt pacman -S git lazygit python php php-sqlite code gnome-keyring neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem docker --needed --noconfirm;
 
     # setup php sqlite
     sed -i s/\;extension=pdo_sqlite/extension=pdo_sqlite/ /mnt/etc/php/php.ini 
