@@ -30,7 +30,7 @@ select_drive() {
     clear;
     lsblk;
     read -p "Drive (eg. /dev/sda): " DRIVE;
-    read -p "SSD? (y/n): " SSD;
+    read -p "NVME? (y/n): " NVME;
     clear;
 }
 
@@ -51,7 +51,7 @@ select_user() {
 confirm_selection() {
     clear;
     echo "Drive: ${DRIVE}";
-    echo "SSD: ${SSD}";
+    echo "NVME: ${NVME}";
     echo "Username: ${USER}";
     echo "Password: ${PASS}";
     echo "";
@@ -96,7 +96,7 @@ EOL
 # Create needed filesystems
 ##
 create_filesystems() {
-    if [ "${SSD}" != "y" ] && [ "${SSD}" != "Y"]; then
+    if [ "${NVME}" != "y" ] && [ "${NVME}" != "Y"]; then
         mkfs.fat -F32 ${DRIVE}1
         mkswap ${DRIVE}2
         mkfs.ext4 ${DRIVE}3
@@ -111,7 +111,7 @@ create_filesystems() {
 # Mount created filesystems
 ##
 mount_partitions() {
-    if [ "${SSD}" != "y" ] && [ "${SSD}" != "Y"]; then
+    if [ "${NVME}" != "y" ] && [ "${NVME}" != "Y"]; then
         swapon ${DRIVE}2
         mount ${DRIVE}3 /mnt
         mkdir /mnt/{boot,home}
