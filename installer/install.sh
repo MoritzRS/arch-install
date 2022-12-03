@@ -284,7 +284,7 @@ install_nvm() {
 ##
 install_common() {
     # Applications
-    arch-chroot /mnt pacman -S git lazygit php php-sqlite code gnome-keyring neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem --needed --noconfirm;
+    arch-chroot /mnt pacman -S git lazygit php php-sqlite code gnome-keyring neovim godot flatpak xdg-desktop-portal-gtk obsidian firefox epiphany chromium totem docker --needed --noconfirm;
 
     # setup php sqlite
     sed -i s/\;extension=pdo_sqlite/extension=pdo_sqlite/ /mnt/etc/php/php.ini 
@@ -301,7 +301,7 @@ install_common() {
 setup_users() {
     arch-chroot /mnt bash <<SHELL
 pacman -S sudo --needed --noconfirm;
-useradd -m -g users -G wheel,storage,disk,power,audio,video -s /usr/bin/zsh ${USER};
+useradd -m -g users -G wheel,storage,disk,power,audio,video,docker -s /usr/bin/zsh ${USER};
 echo -e "${PASS}\n${PASS}" | passwd;
 echo -e "${PASS}\n${PASS}" | passwd ${USER};
 echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/10-installer;
