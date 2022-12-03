@@ -68,7 +68,3 @@ super + Print
 
 super + shift + Print
     maim -s ~/Bilder/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && notify-send "Screenshot" "Screenshot Saved"
-
-# Colorpicker
-super + shift + p
-    xcolor -s

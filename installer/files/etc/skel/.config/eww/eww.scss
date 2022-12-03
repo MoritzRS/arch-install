@@ -1,0 +1,116 @@
+$base: #181926;
+$baseLight: #363a4f;
+$blue: #8aadf4;
+$green: #a6da95;
+$red: #ed8796;
+
+.bar {
+  padding: 8px;
+  background-color: $base;
+
+  .launcher {
+    padding: 0 20px 0 16px;
+    background-color: transparent;
+    color: $blue;
+    border-radius: 999px;
+  }
+
+  .workspaces {
+    padding: 0 16px;
+    background-color: $baseLight;
+    border-radius: 999px;
+
+    .workspace{
+      padding: 0 6px 0 4px;
+      background-color: transparent;
+    }
+  }
+
+  .player {
+    padding: 0 8px;
+    background-color: $blue;
+    border-radius: 999px;
+
+    .playerbutton {
+      padding: 0 4px;
+      background-color: transparent;
+      color: $base;
+    }
+  }
+
+  .actionbtn {
+    color: $base;
+    background-color: $blue;
+    padding: 0 8px;
+    border-radius: 999px;
+  }
+
+  .powerbutton {
+    padding: 0 8px;
+    background-color: transparent;
+    border-radius: 999px;
+  }
+
+  .statusbar {
+    padding: 0 16px;
+    background-color: $baseLight;
+    border-radius: 999px;
+
+    .danger {
+      color: $red;
+    }
+    
+  }
+
+}
+
+
+.menu {
+  padding: 8px;
+  border-radius: 20px;
+  background-color: $base;
+
+  .toggle {
+    border-radius: 20px;
+    padding: 20px 0;
+    background-color: $baseLight;
+
+    &.active {
+      background-color: $blue;
+      color: $base;
+    }
+  }
+
+  .player {
+    padding: 8px;
+    border-radius: 20px;
+    background-color: $baseLight;
+
+    label {
+      padding: 8px;
+    }
+
+    .playerbutton {
+      padding: 4px;
+      border-radius: 999px;
+      background-color: transparent;
+    }
+  }
+
+  .rangecontrol {
+    padding: 4px 16px;
+    border-radius: 20px;
+    background-color: $baseLight;
+
+    slider {
+      border-radius: 999px;
+    }
+  }
+
+  .menubutton {
+    color: $base;
+    background-color: $blue;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+}

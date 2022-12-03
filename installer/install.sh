@@ -252,7 +252,7 @@ install_desktop() {
     PACKAGES+=" lightdm lightdm-slick-greeter"
     PACKAGES+=" bspwm picom sxhkd i3lock numlockx dex";
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi alacritty polybar dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip udiskie";
+    PACKAGES+=" rofi alacritty dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip udiskie playerctl inotify-tools";
     PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 lxinput-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
@@ -313,6 +313,9 @@ SHELL
 ##
 install_configs() {
     cp -r ${DIR}/files/. /mnt
+
+    # install eww package
+    install -Dm755 ${DIR}/packages/eww /mnt/usr/bin/eww
 
     # make bspwmrc executable
     chmod +x /mnt/etc/skel/.config/bspwm/bspwmrc

@@ -1,0 +1,315 @@
+(defpoll time :interval "5s" "date +%H:%M")
+(deflisten playerstatus :initial "" "bash ~/.config/eww/scripts/player.sh --status")
+(deflisten playertitle :initial "" "bash ~/.config/eww/scripts/player.sh --title")
+
+(deflisten workspaces "bash ~/.config/eww/scripts/workspaces.sh")
+
+(deflisten windowname "bash ~/.config/eww/scripts/window.sh --name")
+
+(deflisten volume "bash ~/.config/eww/scripts/audio.sh --volume")
+(deflisten muted "bash ~/.config/eww/scripts/audio.sh --muted")
+(deflisten volumeicon "bash ~/.config/eww/scripts/audio.sh --icon")
+
+(deflisten backlightvalue "bash ~/.config/eww/scripts/backlight.sh --value")
+(deflisten backlighticon "bash ~/.config/eww/scripts/backlight.sh --icon")
+
+(defpoll bluetoothstatus :interval "3s" "bash ~/.config/eww/scripts/bluetooth.sh --status")
+(defpoll bluetoothicon :interval "3s" "bash ~/.config/eww/scripts/bluetooth.sh --icon")
+
+(deflisten wifiessid "bash ~/.config/eww/scripts/wifi.sh --essid")
+(deflisten wifistatus "bash ~/.config/eww/scripts/wifi.sh --status")
+(deflisten wifiicon "bash ~/.config/eww/scripts/wifi.sh --icon")
+
+(deflisten airplanestatus "bash ~/.config/eww/scripts/airplanemode.sh --status");
+
+(deflisten batterystatus "bash ~/.config/eww/scripts/battery.sh --status")
+(deflisten batterycapacity "bash ~/.config/eww/scripts/battery.sh --capacity")
+(deflisten batteryicon "bash ~/.config/eww/scripts/battery.sh --icon")
+
+
+(defwindow bar
+	:stacking "bg"
+	:windowtype "dock"
+	:wm-ignore false
+	:reserve (struts
+		:distance "42px"
+		:side "top"
+	)
+	:geometry (geometry
+		:width "100%"
+		:height "42px"
+	)
+	(box
+		:class "bar"
+		:orientation "horizontal"
+		:space-evenly true
+		(box
+			:orientation "horizontal"
+			:halign "start"
+			:space-evenly false
+			:spacing 8
+			(button
+				:class "launcher"
+				:tooltip "Launcher"
+				:onclick "rofi -show drun -theme ~/.config/rofi/styles/launcher.rasi &"
+				(label :text "")
+			)
+			(box
+				:class "workspaces"
+				:orientation "horizontal"
+				:spacing 0
+				:space-evenly false
+				(for entry in workspaces
+					(button
+						:class "workspace"
+						:onclick "bspc desktop -f ^${entry[1]}"
+						(label :text {entry[0]})
+					)
+				)
+			)
+		)
+		(box
+			:orientation "horizontal"
+			:space-evenly false
+			:halign "center"
+			:spacing 16
+			(label :text windowname)
+		)
+		(box
+			:orientation "horizontal"
+			:halign "end"
+			:space-evenly false
+			:spacing 8
+			(revealer
+				:transition "slideleft"
+				:duration "0.15s"
+				:reveal {playerstatus == "" ? false : true}
+				(box
+					:class "player"
+					:orientation "horizontal"
+					:halign "center"
+					:space-evenly false
+					:spacing 0
+					:tooltip playertitle
+					(button
+						:class "playerbutton"
+						:onclick "playerctl previous"
+						(label :text "玲")
+					)
+					(button
+						:class "playerbutton"
+						:onclick {playerstatus == "Playing" ? "bash ~/.config/eww/scripts/player.sh --pause" : "bash ~/.config/eww/scripts/player.sh --play"}
+						(label :text {playerstatus == "Playing" ? "" : "契"} )
+					)
+					(button
+						:class "playerbutton"
+						:onclick "playerctl next"
+						(label :text "怜")
+					)
+					
+				)
+			)
+			(button
+				:class "actionbtn"
+				:onclick "sleep 0.5 && xcolor -s &"
+				:tooltip "Color Picker"
+				(label :text "")
+			)
+			(button
+				:class "actionbtn"
+				:onclick "maim ~/Bilder/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && notify-send \"Screenshot\" \"Screenshot Saved\""
+				:onrightclick "maim -s ~/Bilder/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png && notify-send \"Screenshot\" \"Screenshot Saved\""
+				:tooltip "Screenshot"
+				(label :text "")
+			)
+			(eventbox
+				:onclick "eww open --toggle menu"
+				(box
+					:class "statusbar"
+					:orientation "horizontal"
+					:halign "center"
+					:space-evenly false
+					:spacing 20
+					(label
+						:text "${volumeicon}"
+						:tooltip "${volume}%"
+					)
+					(label
+						:text "${backlighticon}"
+						:tooltip "${backlightvalue}%"
+					)
+					(label
+						:visible {airplanestatus != "enabled"}
+						:text "${bluetoothicon}"
+						:tooltip {bluetoothstatus == "enabled" ? "An" : "Aus"}
+					)
+					(label
+						:visible {airplanestatus != "enabled"}
+						:text "${wifiicon}"
+						:tooltip {wifistatus == "enabled" ? wifiessid : "Aus"}
+					)
+					(label
+						:visible {airplanestatus == "enabled"}
+						:text ""
+						:tooltip "Airplane Mode aktiv"
+					)
+					(label
+						:class {batterycapacity < 20 ? "danger" : ""}
+						:text "${batteryicon}"
+						:tooltip "${batterycapacity}% ${batterystatus}"
+					)
+					(label
+						:text "|"
+					)
+					(label
+						:text time
+					)
+				)
+			)
+		)
+	)	
+)
+
+
+(defwindow menu
+	:stacking "fg"
+	:windowtype "dialog"
+	:wm-ignore true
+	:geometry (geometry
+		:width "400px"
+		:x "-8px"
+		:y "48px"
+		:anchor "top right"
+	)
+	(box
+		:class "menu"
+		:orientation "vertical"
+		:valign "start"
+		:space-evenly false
+		:spacing 8
+		:active true
+		(box
+			:orientation "horizontal"
+			:space-evenly true
+			:spacing 8
+			(button
+				:class {wifistatus == "enabled" ? "toggle active" : "toggle"}
+				:onclick "bash ~/.config/eww/scripts/wifi.sh --toggle"
+				(label
+					:text "  Wifi"
+				)
+			)
+			(button
+				:class {bluetoothstatus == "enabled" ? "toggle active" : "toggle"}
+				:onclick "bash ~/.config/eww/scripts/bluetooth.sh --toggle"
+				(label
+					:text " Bluetooth"
+				)
+			)
+		)
+		(box
+			:orientation "horizontal"
+			:space-evenly true
+			:spacing 8
+			(button
+				:class {muted == "true" ? "toggle" : "toggle active"}
+				:onclick "bash ~/.config/eww/scripts/audio.sh --toggle"
+				(label
+					:text "  Audio"
+				)
+			)
+			(button
+				:class {airplanestatus == "disabled" ? "toggle" : "toggle active"}
+				:onclick "bash ~/.config/eww/scripts/airplanemode.sh --toggle"
+				(label
+					:text " Airplane"
+				)
+			)
+		)
+		(box
+			:class "player"
+			:orientation "vertical"
+			:space-evenly true
+			:spacing 8
+			:visible true
+			(label
+				:limit-width 30
+				:text {playertitle != "" ? playertitle : "No Player Active"}
+				:tooltip {playertitle != "" ? playertitle : "No Player Active"}
+			)
+			(box
+				:orientation "horizontal"
+				:space-evenly true
+				(button
+					:class "playerbutton"
+					:onclick "playerctl previous"
+					(label :text "玲")
+				)
+				(button
+					:class "playerbutton"
+					:onclick {playerstatus == "Playing" ? "bash ~/.config/eww/scripts/player.sh --pause" : "bash ~/.config/eww/scripts/player.sh --play"}
+					(label :text {playerstatus == "Playing" ? "" : "契"} )
+				)
+				(button
+					:class "playerbutton"
+					:onclick "playerctl next"
+					(label :text "怜")
+				)
+			)
+		)
+		(box
+			:class "rangecontrol"
+			:orientation "horizontal"
+			:space-evenly false
+			:spacing 8
+			:tooltip "${volume}%"
+			(label :text volumeicon)
+			(scale
+				:hexpand true
+				:min 0
+				:max 100
+				:value volume
+				:onchange "bash ~/.config/eww/scripts/audio.sh --set {}"
+			)
+		)
+		(box
+			:class "rangecontrol"
+			:orientation "horizontal"
+			:space-evenly false
+			:spacing 8
+			:tooltip "${backlightvalue}%"
+			(label :text backlighticon)
+			(scale
+				:hexpand true
+				:min 0
+				:max 100
+				:value backlightvalue
+				:onchange "bash ~/.config/eww/scripts/backlight.sh --set {}"
+			)
+		)
+		(box
+			:orientation "horizontal"
+			:space-evenly false
+			:spacing 8
+			:halign "end"
+			(button
+				:class "menubutton"
+				:tooltip "Task Manager"
+				:onclick "lxtask &"
+				(label :text "")
+			)
+			(button
+				:class "menubutton"
+				:tooltip "Energie Einstellungen"
+				:onclick "xfce4-power-manager-settings &"
+				(label :text "")
+			)
+			(button
+				:class "menubutton"
+				:tooltip "Power Menu"
+				:onclick "bash ~/.config/rofi/scripts/powermenu.sh"
+				(label :text "襤")
+			)
+		)
+	)
+)

@@ -4,7 +4,7 @@
 dex -a -s ~/.config/autostart -w
 pgrep -x sxhkd > /dev/null || sxhkd &
 nitrogen --restore &
-~/.config/polybar/launch.sh &
+eww open bar &
 dunst &
 xfce4-power-manager &
 udiskie --no-notify &
