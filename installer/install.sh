@@ -186,11 +186,11 @@ install_bootloader() {
     arch-chroot /mnt pacman -S grub-efi-x86_64 efibootmgr dosfstools os-prober mtools --needed --noconfirm;
     arch-chroot /mnt grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck;
     
-    git clone --depth=1 https://github.com/catppuccin/grub.git /mnt/cp-grub;
-    cp -r /mnt/cp-grub/src/catppuccin-macchiato-grub-theme /mnt/usr/share/grub/themes/catppuccin-macchiato-grub-theme;
-    rm -rf /mnt/cp-grub;
+    # git clone --depth=1 https://github.com/catppuccin/grub.git /mnt/cp-grub;
+    # cp -r /mnt/cp-grub/src/catppuccin-macchiato-grub-theme /mnt/usr/share/grub/themes/catppuccin-macchiato-grub-theme;
+    # rm -rf /mnt/cp-grub;
 
-    sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt\"+ /mnt/etc/default/grub;
+    # sed -i s+\#GRUB_THEME=\"/path/to/gfxtheme\"+GRUB_THEME=\"/usr/share/grub/themes/catppuccin-macchiato-grub-theme/theme.txt\"+ /mnt/etc/default/grub;
     
     arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg;
 }
@@ -245,17 +245,14 @@ install_themes() {
 ##
 install_desktop() {
     local PACKAGES="xorg xorg-drivers light xf86-input-synaptics";
-    PACKAGES+=" lightdm lightdm-slick-greeter"
-    PACKAGES+=" bspwm picom sxhkd i3lock numlockx dex";
+    PACKAGES+=" gdm gnome-shell gnome-control-center nautilus"
     PACKAGES+=" noto-fonts";
-    PACKAGES+=" rofi alacritty dunst nitrogen xcolor maim pcmanfm-gtk3 xarchiver unzip udiskie playerctl inotify-tools";
-    PACKAGES+=" ristretto xdotool xdg-utils lxrandr-gtk3 lxappearance-gtk3 lxtask-gtk3 lxinput-gtk3 xfce4-power-manager";
     arch-chroot /mnt pacman -S ${PACKAGES} --needed --noconfirm;
 
 
-    sed -i s/\#user-session=default/user-session=bspwm/ /mnt/etc/lightdm/lightdm.conf
-    sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /mnt/etc/lightdm/lightdm.conf
-    arch-chroot /mnt systemctl enable lightdm;
+    # sed -i s/\#user-session=default/user-session=bspwm/ /mnt/etc/lightdm/lightdm.conf
+    # sed -i s/\#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/ /mnt/etc/lightdm/lightdm.conf
+    arch-chroot /mnt systemctl enable gdm;
 }
 
 ##
@@ -354,7 +351,7 @@ install_bootloader;
 install_desktop;
 
 install_nerd_fonts;
-install_themes;
+#install_themes;
 install_nvm;
 install_common;
 install_configs;
